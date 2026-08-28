@@ -1,7 +1,7 @@
 {
     "deepseek": {
         "url": "https://api.deepseek.com",
-        "DEEPSEEK_API_KEY": "sk-ce9c9279e3a04fcd8d182ed2337724c2"
+        "DEEPSEEK_API_KEY": "sk-"
     },
     "siliconFlow": {
         "url": "https://api.siliconflow.cn/v1",
