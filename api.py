@@ -159,16 +159,11 @@ def _流式输出解析(response):
 def deepseek_chat(消息历史=None, 可用工具=None, 流式=True):
     api_key = os.environ.get("DEEPSEEK_API_KEY")
     base_url = os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
-    if not api_key:
-        # 环境变量没有，从 config/api_key.json 读取
-        with open("config/api_key.json", "r", encoding="utf-8") as file:
-            config = json.load(file)["deepseek"]
-            api_key = config.get("DEEPSEEK_API_KEY") or config.get("api_key")
-            base_url = config.get("url", "https://api.deepseek.com")
+
 
     client = OpenAI(
-        api_key=config["DEEPSEEK_API_KEY"],
-        base_url=config["url"])
+        api_key=api_key,
+        base_url=base_url)
 
     # 未传入消息历史时，用默认单轮示例（保持原有行为不变）
     messages = 消息历史 if 消息历史 is not None else [
