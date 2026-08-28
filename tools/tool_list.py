@@ -64,7 +64,7 @@ tool_list = [
                     "auto_assign": {
                         "type": "boolean",
                         "description": "是否自动分配负责人，默认 true",
-                        "default": true
+                        "default": True
                     }
                 },
                 "required": ["title", "description"]
@@ -75,4 +75,4 @@ tool_list = [
 
 
 if __name__ == "__main__":
-    print(f"映射表取出的对象是: {工具调用映射表.get('查天气')}")
+    print(f"映射表取出的对象是: {工具调用映射表.get('query_weather')}")
