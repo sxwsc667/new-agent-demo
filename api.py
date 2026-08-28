@@ -157,9 +157,14 @@ def _流式输出解析(response):
 # 调用deepseek api,不使用流式输出不打印
 # 消息历史：外部传入完整对话（含system），用于多轮对话；不传则用默认单轮示例
 def deepseek_chat(消息历史=None, 可用工具=None, 流式=True):
-    # 从配置文件读取密钥与地址(Load API key and URL from config file)
-    with open("config/api_key.json", "r", encoding="utf-8") as file:
-        config = json.load(file)["deepseek"]
+    api_key = os.environ.get("DEEPSEEK_API_KEY")
+    base_url = os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
+    if not api_key:
+        # 环境变量没有，从 config/api_key.json 读取
+        with open("config/api_key.json", "r", encoding="utf-8") as file:
+            config = json.load(file)["deepseek"]
+            api_key = config.get("DEEPSEEK_API_KEY") or config.get("api_key")
+            base_url = config.get("url", "https://api.deepseek.com")
 
     client = OpenAI(
         api_key=config["DEEPSEEK_API_KEY"],
