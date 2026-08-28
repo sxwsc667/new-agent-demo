@@ -40,9 +40,6 @@ def run_agent(user_message, history):
     # 写入当前用户消息（钩子的 用户输入 依赖终端 input()，Gradio 场景改为手动追加）
     box["消息"].append({"role": "user", "content": user_message})
 
-    # 本轮渲染用事件列表：采集"思考 / 工具调用 / 工具结果"，供前端逐步展示
-    box["前端事件"] = []
-
     # ReAct 内层循环：模型可能连续多次请求工具，直到给出最终答案
     max_tool_rounds = 10
     tool_round = 0
@@ -52,30 +49,10 @@ def run_agent(user_message, history):
             use_model()
             模型调用后()
 
-            # 记录模型的思考内容
-            思考 = box["回复消息"].get("reasoning_content")
-            if 思考:
-                box["前端事件"].append({"类型": "思考", "内容": 思考})
-
             if box["是否调用工具"]:
-                # 本轮模型在调用工具前说的文字，一并展示
-                if box["回复消息"].get("content"):
-                    box["前端事件"].append({"类型": "模型回复", "内容": box["回复消息"]["content"]})
-                # 记录模型要调用的工具及其参数
-                for 单个调用 in box["回复消息"]["tool_calls"]:
-                    box["前端事件"].append({
-                        "类型": "工具调用",
-                        "名称": 单个调用["function"]["name"],
-                        "参数": 单个调用["function"]["arguments"],
-                    })
-
                 工具调用前()
                 use_tool()
                 工具调用后()
-
-                # 记录工具执行结果
-                for 单个结果 in box["工具调用结果"]:
-                    box["前端事件"].append({"类型": "工具结果", "内容": 单个结果["content"]})
                 tool_round += 1
             else:
                 break
