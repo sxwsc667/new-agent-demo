@@ -1,0 +1,18 @@
+{
+    "deepseek": {
+        "url": "https://api.deepseek.com",
+        "DEEPSEEK_API_KEY": "sk-ce9c9279e3a04fcd8d182ed2337724c2"
+    },
+    "siliconFlow": {
+        "url": "https://api.siliconflow.cn/v1",
+        "SILICONFLOW_API_KEY": "sk-whsxhkwyflmvrnnpaaxhzmqmnkrwlyydvttdevckswkyewmx"
+    },
+    "lumiya": {
+        "url": "https://xn--1ys141f4ks.com/v1",
+        "LUMIYA_API_KEY": "sk-GtaEw6VMDkZJnXADx9nCWB9rCfpf7qJp92gJWneCrQUwFdJi"
+    },
+    "agnes": {
+        "url": "https://apihub.agnes-ai.com",
+        "AGNES_API_KEY": "sk-mNwRO7Ws2hnxJXKNdvyJui8fwH4k9o4k7spJiO4BGoBgExzO"
+    }
+}
